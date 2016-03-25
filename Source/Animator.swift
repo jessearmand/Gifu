@@ -21,6 +21,8 @@ class Animator {
   var currentFrameIndex = 0
   /// The index of the current GIF frame from the source.
   var currentPreloadIndex = 0
+  /// The idnex of the current GIF frame the animation was moved to. -1 means the animation wasn't moved.
+  var currentMoveIndex = -1
   /// Time elapsed since the last frame change. Used to determine when the frame should be updated.
   var timeSinceLastFrameChange: NSTimeInterval = 0.0
   /// Specifies whether GIF frames should be pre-scaled.
@@ -84,6 +86,22 @@ class Animator {
 
     return AnimatedFrame(image: scaledImage, duration: frameDuration)
   }
+  
+  /// Updates the cached frames and indices in case the animation was moved to an arbitrary frame.
+  func prepareFramesAfterMoving() {
+    // Check whether cache rebuilding is needed.
+    if animatedFrames.count == frameCount {
+      currentFrameIndex = currentMoveIndex
+    } else {
+      rebuildFrameCache()
+    }
+    
+    // Reset updating time.
+    timeSinceLastFrameChange = 0.0
+    
+    // Reset move index.
+    currentMoveIndex = -1
+  }
 
   /// Returns the frame at a particular index.
   ///
@@ -112,5 +130,28 @@ class Animator {
     }
     
     return true
+  }
+  
+  /// Rebuilds cache using currentMoveIndex as the starting index.
+  func rebuildFrameCache() {
+    if currentMoveIndex < 0 { return }
+    
+    // Check whether move index matches current animation position.
+    if ((currentMoveIndex + animatedFrames.count) % frameCount) == currentPreloadIndex { return }
+    
+    // Calculate indices of the frames that require preloading.
+    var indicesForPreload = [Int](count: animatedFrames.count, repeatedValue: 0)
+    var baseIndex = currentMoveIndex
+    for indexForPreload in (0..<indicesForPreload.count) {
+      indicesForPreload[indexForPreload] = baseIndex % frameCount
+      baseIndex += 1
+    }
+    
+    // Fill the cache with the new animated frames.
+    animatedFrames = indicesForPreload.reduce([]) { $0 + pure(prepareFrame($1)) }
+
+    // Reset currently invalid indices.
+    currentPreloadIndex = baseIndex % frameCount
+    currentFrameIndex = 0
   }
 }

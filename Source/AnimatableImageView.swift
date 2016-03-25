@@ -70,6 +70,11 @@ public class AnimatableImageView: UIImageView {
   /// Starts the image view animation.
   public func startAnimatingGIF() {
     if animator?.isAnimatable ?? false {
+      // Check whether the animation was moved.
+      if (animator?.currentMoveIndex ?? -1) >= 0 {
+        prepareForPlayAfterMoving()
+      }
+      
       displayLink.paused = false
     }
   }
@@ -79,10 +84,26 @@ public class AnimatableImageView: UIImageView {
     displayLink.paused = true
   }
   
+  /// Moves the GIF animation to the given frame index.
+  /// - parameter index: Index the animation must be moved to.
+  public func moveToFrame(index: Int) {
+    guard let animator = animator else { return }
+    if animator.currentMoveIndex == index || index < 0 || index >= animator.frameCount { return }
+    
+    stopAnimatingGIF()
+    image = animator.prepareFrame(index).image
+    animator.currentMoveIndex = index
+  }
+  
   /// Reset the image view values
   public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
+  }
+  
+  /// Updates cache to correctly continue GIF playing.
+  func prepareForPlayAfterMoving() {
+    animator?.prepareFramesAfterMoving()
   }
 
   /// Update the current frame with the displayLink duration
