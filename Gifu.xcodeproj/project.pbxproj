@@ -18,6 +18,7 @@
 		009BD1441BBC93C800FC982B /* CGSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BD1431BBC93C800FC982B /* CGSizeExtension.swift */; };
 		00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */; };
 		00B8C7961A3650EE00C188E7 /* Gifu.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8C7951A3650EE00C188E7 /* Gifu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E31C5FA1CA57994009E0A07 /* AnimatableImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E31C5F91CA57994009E0A07 /* AnimatableImageViewDelegate.swift */; };
 		EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */; };
 		EAF49C811A3A4FAA00B395DF /* FunctionalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49C801A3A4FAA00B395DF /* FunctionalHelpers.swift */; };
 		EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */; };
@@ -48,6 +49,7 @@
 		00B8C7421A364DA400C188E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
 		00B8C75C1A364DCE00C188E7 /* ImageSourceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSourceHelpers.swift; sourceTree = "<group>"; };
 		00B8C7951A3650EE00C188E7 /* Gifu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gifu.h; sourceTree = "<group>"; };
+		6E31C5F91CA57994009E0A07 /* AnimatableImageViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableImageViewDelegate.swift; sourceTree = "<group>"; };
 		EAF49C7E1A3A4DE000B395DF /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		EAF49C801A3A4FAA00B395DF /* FunctionalHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalHelpers.swift; sourceTree = "<group>"; };
 		EAF49CB01A3B6EEB00B395DF /* AnimatedFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedFrame.swift; sourceTree = "<group>"; };
@@ -152,12 +154,21 @@
 		00B8C75A1A364DBE00C188E7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6E31C5F81CA5797F009E0A07 /* Protocols */,
 				007E08421BD95C6100883D0C /* Classes */,
 				007E08411BD95C0200883D0C /* Helpers */,
 				007E08401BD95BE900883D0C /* Extensions */,
 				00B8C7951A3650EE00C188E7 /* Gifu.h */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		6E31C5F81CA5797F009E0A07 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6E31C5F91CA57994009E0A07 /* AnimatableImageViewDelegate.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +313,7 @@
 				004529921BD82209006493BF /* Runes.swift in Sources */,
 				EAF49CB11A3B6EEB00B395DF /* AnimatedFrame.swift in Sources */,
 				00B8C75F1A364DCE00C188E7 /* ImageSourceHelpers.swift in Sources */,
+				6E31C5FA1CA57994009E0A07 /* AnimatableImageViewDelegate.swift in Sources */,
 				EAF49C811A3A4FAA00B395DF /* FunctionalHelpers.swift in Sources */,
 				007E08441BD95E6200883D0C /* ArrayExtension.swift in Sources */,
 				EAF49C7F1A3A4DE000B395DF /* UIImageExtension.swift in Sources */,

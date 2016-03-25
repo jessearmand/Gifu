@@ -9,6 +9,9 @@ public class AnimatableImageView: UIImageView {
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
 
+  /// The object that acts as the delegate of the AnimatableImageView.
+  public weak var delegate: AnimatableImageViewDelegate?
+  
   /// The size of the frame cache.
   public var framePreloadCount = 50
 
@@ -43,6 +46,8 @@ public class AnimatableImageView: UIImageView {
   public func prepareForAnimation(imageData data: NSData) {
     playCount = 0
     image = UIImage(data: data)
+    delegate?.animatableImageView?(self, didChangeDisplayedFrameToIndex: 0)
+
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.needsPrescaling = needsPrescaling
     animator?.prepareFrames()
@@ -68,6 +73,7 @@ public class AnimatableImageView: UIImageView {
   /// Updates the `image` property of the image view if necessary. This method should not be called manually.
   override public func displayLayer(layer: CALayer) {
     image = animator?.currentFrame
+    delegate?.animatableImageView?(self, didChangeDisplayedFrameToIndex: animator?.currentAnimationPosition ?? -1)
     stopAnimatingIfNeeded()
   }
 
@@ -80,12 +86,14 @@ public class AnimatableImageView: UIImageView {
       }
       
       displayLink.paused = false
+      delegate?.animatableImageView?(self, didStartAnimatingAtIndex: animator?.currentAnimationPosition ?? -1)
     }
   }
 
   /// Stops the image view animation.
   public func stopAnimatingGIF() {
     displayLink.paused = true
+    delegate?.animatableImageView?(self, didStopAnimatingAtIndex: animator?.currentAnimationPosition ?? -1)
   }
   
   /// Moves the GIF animation to the given frame index.
@@ -96,6 +104,7 @@ public class AnimatableImageView: UIImageView {
     
     stopAnimatingGIF()
     image = animator.prepareFrame(index).image
+    delegate?.animatableImageView?(self, didChangeDisplayedFrameToIndex: index)
     animator.currentMoveIndex = index
   }
   
@@ -103,6 +112,7 @@ public class AnimatableImageView: UIImageView {
   public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
+    delegate = nil
   }
   
   /// Updates cache to correctly continue GIF playing.
@@ -116,6 +126,8 @@ public class AnimatableImageView: UIImageView {
       // Check whether the currently displayed animation frame is the last one.
       if animator.currentAnimationPosition == (animator.frameCount - 1) {
         playCount += 1
+        delegate?.animatableImageView?(self, didReachEndOfIteration: playCount)
+
         if shouldStopLooping() == true {
           playCount = 0
           stopAnimatingGIF()
