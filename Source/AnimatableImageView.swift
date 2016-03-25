@@ -51,6 +51,7 @@ public class AnimatableImageView: UIImageView {
     animator = Animator(data: data, size: frame.size, contentMode: contentMode, framePreloadCount: framePreloadCount)
     animator?.needsPrescaling = needsPrescaling
     animator?.prepareFrames()
+    displayLink.paused = true
     attachDisplayLink()
   }
 
