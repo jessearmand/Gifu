@@ -112,6 +112,7 @@ public class AnimatableImageView: UIImageView {
   public func prepareForReuse() {
     stopAnimatingGIF()
     animator = nil
+    delegate = nil
   }
   
   /// Updates cache to correctly continue GIF playing.
