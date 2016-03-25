@@ -7,6 +7,9 @@ public class AnimatableImageView: UIImageView {
   /// A display link that keeps calling the `updateFrame` method on every screen refresh.
   lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
 
+  /// The object that acts as the delegate of the AnimatableImageView.
+  public weak var delegate: AnimatableImageViewDelegate?
+  
   /// The size of the frame cache.
   public var framePreloadCount = 50
 
