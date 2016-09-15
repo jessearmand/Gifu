@@ -139,7 +139,7 @@ public class AnimatableImageView: UIImageView {
   /// - returns: true if the animation should stop looping, false otherwise.
   func shouldStopLooping() -> Bool {
     let sourceLoopCount = animator?.sourceLoopCount ?? 0
-    if loopCount == 0 || sourceLoopCount == 0 {
+    if loopCount == 0 && sourceLoopCount == 0 {
       // Infinite animation loop.
       return false
     }
@@ -148,8 +148,11 @@ public class AnimatableImageView: UIImageView {
       // Control iterations with user-defined loop count.
       if loopCount == playCount { return true }
     }
-    // Control iterations with loop count from the GIF data.
-    else if sourceLoopCount == playCount { return true }
+
+    if sourceLoopCount > 0 {
+      // Control iterations with loop count from the GIF data.
+      if sourceLoopCount == playCount { return true }
+    }
 
     return false
   }
