@@ -8,14 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		007380231B279644008DAD5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 007380221B279644008DAD5C /* Default-568h@2x.png */; };
+		01FAE1CE1D8A836000280141 /* Gifu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FAE1CD1D8A836000280141 /* Gifu.framework */; };
+		01FAE1CF1D8A836000280141 /* Gifu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01FAE1CD1D8A836000280141 /* Gifu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9D98823D19BC69CA00B790C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823C19BC69CA00B790C6 /* AppDelegate.swift */; };
 		9D98823F19BC69CA00B790C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D98823E19BC69CA00B790C6 /* ViewController.swift */; };
 		9D98824419BC69CA00B790C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D98824319BC69CA00B790C6 /* Images.xcassets */; };
 		9D98825A19BC69F600B790C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D98825919BC69F600B790C6 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		01FAE1D01D8A836000280141 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				01FAE1CF1D8A836000280141 /* Gifu.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		007380221B279644008DAD5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		01FAE1CD1D8A836000280141 /* Gifu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Gifu.framework; path = "/Users/jessearmand/Library/Developer/Xcode/DerivedData/Gifu-dzgjbhwhqjxjjsevizxrdfhkzpwc/Build/Products/Debug-iphoneos/Gifu.framework"; sourceTree = "<absolute>"; };
 		9D25870519BCCB0F00A55A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D98823719BC69CA00B790C6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D98823C19BC69CA00B790C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = classes/AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FAE1CE1D8A836000280141 /* Gifu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +56,7 @@
 		9D98822E19BC69CA00B790C6 = {
 			isa = PBXGroup;
 			children = (
+				01FAE1CD1D8A836000280141 /* Gifu.framework */,
 				9D98823919BC69CA00B790C6 /* Source */,
 				9D98823819BC69CA00B790C6 /* Products */,
 			);
@@ -83,6 +102,7 @@
 				9D98823319BC69CA00B790C6 /* Sources */,
 				9D98823419BC69CA00B790C6 /* Frameworks */,
 				9D98823519BC69CA00B790C6 /* Resources */,
+				01FAE1D01D8A836000280141 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
