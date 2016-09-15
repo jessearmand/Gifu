@@ -8,6 +8,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     imageView.animateWithImage(named: "mugen.gif")
+    imageView.loopCount = 1
   }
 
   @IBAction func toggleAnimation(sender: AnyObject) {
@@ -18,4 +19,3 @@ class ViewController: UIViewController {
     }
   }
 }
-
