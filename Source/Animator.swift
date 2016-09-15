@@ -57,15 +57,15 @@ class Animator {
   var isAnimatable: Bool {
     return imageSource.isAnimatedGIF
   }
-  
+
   /// The index of the currently displayed GIF frame.
   var currentAnimationPosition: Int {
       // Check whether current cache index matches current animation position.
       if animatedFrames.count == frameCount {
         return currentFrameIndex
       } else {
-        // Compute the animation position using currentPreloadIndex and current cache count properties.
-        let animationPosition = currentPreloadIndex - animatedFrames.count
+        // Compute the animation position using currentFrameIndex and current cache count properties.
+        let animationPosition = currentFrameIndex - animatedFrames.count
         return (animationPosition < 0) ? (animationPosition + frameCount) : animationPosition
       }
   }
